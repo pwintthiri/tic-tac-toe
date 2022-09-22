@@ -7,13 +7,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class TicTacToe extends JPanel {
+    boolean restart = false;
     char entry = 'x';
     int totalCells = 9;
     int totalRows = 3;
     int totalCols = 3;
-    boolean restart = false;
     static JFrame jFrame = new JFrame("Tic Tac Toe!");
     JButton[] jButtons = new JButton[totalCells];
+    
+    
 
     public TicTacToe() {
         // Grid Layout with num of rows and cols
@@ -147,12 +149,13 @@ public class TicTacToe extends JPanel {
     }
 
     public static void setJFrame(JFrame jFrame) {
+        Color bgColor = new Color(231, 231, 253);
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-     
         jFrame.setBounds(500, 500, 600, 550);
-        jFrame.getContentPane().add(new TicTacToe());
+        jFrame.setContentPane(new TicTacToe());
+        jFrame.getContentPane().setBackground(bgColor);
         jFrame.setVisible(true);
-        jFrame.setLocationRelativeTo(null);
+        jFrame.setLocationRelativeTo(null);  
     }
 
     public static void restartGame() {
