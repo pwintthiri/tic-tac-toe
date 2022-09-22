@@ -11,8 +11,9 @@ public class TicTacToe extends JPanel {
     int totalCells = 9;
     int totalRows = 3;
     int totalCols = 3;
-    JButton[] jButtons = new JButton[totalCells];
     boolean restart = false;
+    static JFrame jFrame = new JFrame("Tic Tac Toe!");
+    JButton[] jButtons = new JButton[totalCells];
 
     public TicTacToe() {
         // Grid Layout with num of rows and cols
@@ -69,7 +70,7 @@ public class TicTacToe extends JPanel {
                 System.exit(0);
             } else if (dialog == JOptionPane.NO_OPTION) {
                 restart = true;
-                main(null);
+                restartGame();
             }
             
         } else if (checkforDraw()) {
@@ -83,7 +84,7 @@ public class TicTacToe extends JPanel {
                 System.exit(0);
             } else if (dialog == JOptionPane.NO_OPTION) {
                 restart = true;
-                main(null);
+                restartGame();
             }
         }
     }
@@ -145,8 +146,7 @@ public class TicTacToe extends JPanel {
         return false;
     }
 
-    public static void main(String[] args) {
-        JFrame jFrame = new JFrame("Tic Tac Toe!");
+    public static void setJFrame(JFrame jFrame) {
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
      
         jFrame.setBounds(500, 500, 600, 550);
@@ -154,4 +154,18 @@ public class TicTacToe extends JPanel {
         jFrame.setVisible(true);
         jFrame.setLocationRelativeTo(null);
     }
+
+    public static void restartGame() {
+        // remove JFrame from previous game
+        jFrame.dispose();
+
+        jFrame = new JFrame("Tic Tac Toe!");
+        setJFrame(jFrame);
+    }
+
+    
+    public static void main(String[] args) {
+        setJFrame(jFrame);
+    }
+    
 }
