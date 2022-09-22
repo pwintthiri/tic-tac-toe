@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -11,6 +12,7 @@ public class TicTacToe extends JPanel {
     int totalRows = 3;
     int totalCols = 3;
     JButton[] jButtons = new JButton[totalCells];
+    boolean restart = false;
 
     public TicTacToe() {
         // Grid Layout with num of rows and cols
@@ -41,8 +43,9 @@ public class TicTacToe extends JPanel {
 
                 showWinner();
             });
-
-            add(jButtons[i]);
+            if (restart == false) {
+                add(jButtons[i]);
+            }
         }
     }
 
@@ -65,7 +68,8 @@ public class TicTacToe extends JPanel {
             if (dialog == JOptionPane.YES_OPTION) {
                 System.exit(0);
             } else if (dialog == JOptionPane.NO_OPTION) {
-                System.exit(0); // UPDATE THIS LATER
+                restart = true;
+                main(null);
             }
             
         } else if (checkforDraw()) {
@@ -78,7 +82,8 @@ public class TicTacToe extends JPanel {
             if (dialog == JOptionPane.YES_OPTION) {
                 System.exit(0);
             } else if (dialog == JOptionPane.NO_OPTION) {
-                System.exit(0); // UPDATE THIS LATER
+                restart = true;
+                main(null);
             }
         }
     }
@@ -138,18 +143,15 @@ public class TicTacToe extends JPanel {
                 return true;
         }
         return false;
-        }
+    }
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Tic Tac Toe!");
-
-        jFrame.getContentPane().add(new TicTacToe());
+        jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+     
         jFrame.setBounds(500, 500, 600, 550);
+        jFrame.getContentPane().add(new TicTacToe());
         jFrame.setVisible(true);
         jFrame.setLocationRelativeTo(null);
     }
-
-
-
-
 }
